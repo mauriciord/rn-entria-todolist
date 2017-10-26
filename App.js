@@ -11,6 +11,10 @@ import {
   Text,
   View
 } from 'react-native';
+import styled from 'styled-components/native';
+import Form from './src/components/form';
+import Sorter from './src/components/sorter';
+import TodoList from './src/components/todo-list';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -19,36 +23,30 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+const StyledApp = styled.View`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+`;
+
 export default class App extends Component<{}> {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
+      <StyledApp>
+        <Form />
+        <Sorter />
+        <TodoList />
+      </StyledApp>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
   instructions: {
     textAlign: 'center',
     color: '#333333',
