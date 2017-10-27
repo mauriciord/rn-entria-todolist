@@ -14,6 +14,7 @@ import {
 import styled from 'styled-components/native';
 import Form from './src/components/form';
 import Sorter from './src/components/sorter';
+import Filter from './src/components/filter';
 import TodoList from './src/components/todo-list';
 
 const instructions = Platform.select({
@@ -24,12 +25,10 @@ const instructions = Platform.select({
 });
 
 const StyledApp = styled.View`
-  display: flex;
   flex: 1;
   justify-content: center;
   align-items: center;
   background: #ffffff;
-  border-radius: 10px;
   padding-top: 15px;
   padding-bottom: 15px;
 `;
@@ -41,6 +40,7 @@ export default class App extends Component<{}> {
         <Form />
         <Sorter />
         <TodoList />
+        <Filter />
       </StyledApp>
     );
   }

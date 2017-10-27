@@ -5,13 +5,14 @@ import styled from 'styled-components/native'
 const Container = styled.View`
   display: flex;
   flex-direction: row;
+  flex: 1;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+  width: 100%;
 `
 
 const CheckContainer = styled.TouchableHighlight`
-  flex: 1;
+  flex: 2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,6 +20,7 @@ const CheckContainer = styled.TouchableHighlight`
 
 const CheckText = styled.Text`
   font-size: 20px;
+  margin: 5px;
 `
 
 const TextContainer = styled.TouchableHighlight`
@@ -35,7 +37,7 @@ const TodoText = styled.Text`
 `
 
 const BtnContainer = styled.TouchableHighlight`
-  flex: 4;
+  flex: 3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,6 +49,8 @@ const BtnDelete = styled.Text`
   font-weight: bold;
   border-radius: 4px;
   padding: 10px;
+  margin: 4px;
+  border-radius: 10px;
 `
 
 const Todo = ({ handleToggleTodo, handleDelTodo, completed, id, text }) => (
@@ -57,11 +61,9 @@ const Todo = ({ handleToggleTodo, handleDelTodo, completed, id, text }) => (
       </View>
     </CheckContainer>
     <TextContainer onPress={handleToggleTodo(id)}>
-
         <TodoText completed={completed}>
           {text}
         </TodoText>
-
     </TextContainer>
     <BtnContainer onPress={handleDelTodo(id)}>
       <BtnDelete onPress={handleDelTodo(id)}>

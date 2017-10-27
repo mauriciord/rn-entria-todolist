@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components/native'
 import { connect } from 'react-redux'
-import { Text, TouchableHighlight, FlatList } from 'react-native'
+import { FlatList, View } from 'react-native'
 import {
   toggleTodo,
   delTodo
@@ -12,13 +12,26 @@ import { todosFilter } from '../../utils/visibilityFilter'
 import { sorterFilter } from '../../utils/sorterFilter'
 import Todo from './Todo'
 
-const StyledFlatList = styled.FlatList`
-  flex:1;
-  flex-direction: row;
+const StyledScroll = styled.ScrollView`
+  display: flex;
+  flex: 1;
+  width: 100%;
 `
 
 class TodoList extends Component {
   keyExtractor = (item, index) => index
+
+  renderSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: "100%",
+          backgroundColor: "#cdf6f7"
+        }}
+      />
+    );
+  }
 
   render () {
     const { todos, filters, sorters, handleToggleTodo, handleDelTodo } = this.props
@@ -28,17 +41,21 @@ class TodoList extends Component {
     )
 
     return (
-      <FlatList 
-        data={filteredTodos}
-        keyExtractor={this.keyExtractor}
-        renderItem={({ item }) => (
-          <Todo 
-            handleToggleTodo={handleToggleTodo}
-            handleDelTodo={handleDelTodo}
-            {...item}
-            />
-        )}
-      />
+      <StyledScroll>
+        <FlatList 
+          style={{ flex: 1 }}
+          data={filteredTodos}
+          keyExtractor={this.keyExtractor}
+          ItemSeparatorComponent={this.renderSeparator}
+          renderItem={({ item }) => (
+            <Todo 
+              handleToggleTodo={handleToggleTodo}
+              handleDelTodo={handleDelTodo}
+              {...item}
+              />
+          )}
+        />
+      </StyledScroll>
     )
   }
 }

@@ -1,48 +1,47 @@
 'use strict'
 
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { connect } from 'react-redux'
+import { TouchableHighlight } from 'react-native'
 import {
   filter
-} from 'reducers/filter/action-creators'
+} from '../../redux-flow/reducers/filter/action-creators'
 import {
   SHOW_ALL,
   SHOW_COMPLETED,
   SHOW_ACTIVE
-} from 'reducers/filter/actions'
+} from '../../redux-flow/reducers/filter/actions'
 
-const Container = styled.div`
+const Container = styled.View`
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
   background: #ECF0F1;
-  padding: 1em;
-  margin: 1.2em 1.6em;
+  padding: 10px;
+  margin: 14px 16px;
   border-radius: 6px;
 `
 
-const BtnFilter = styled.a`
-  background: #127FAA;
-  border: 1px solid #287591;
-  color: #FFFFFF;
-  padding: 0.25em 1em;
+const BtnFilter = styled.Text`
+  color: #736BD4;
+  padding: 2px 8px;
   border-radius: 4px;
   font-weight: bold;
-  text-transform: uppercase;
-
-  &:hover {
-    background: #287591;
-    border: 1px solid  #127FAA;
-    color: #e4e4e4;
-  }
 `
 
 const Filter = ({ handleFilter }) => (
   <Container>
-    <BtnFilter onClick={handleFilter(SHOW_ALL)}>Show All</BtnFilter>
-    <BtnFilter onClick={handleFilter(SHOW_COMPLETED)}>Show Completed</BtnFilter>
-    <BtnFilter onClick={handleFilter(SHOW_ACTIVE)}>Show Active</BtnFilter>
+    <TouchableHighlight onPress={handleFilter(SHOW_ALL)}>
+      <BtnFilter>Show All</BtnFilter>
+    </TouchableHighlight>
+    <TouchableHighlight onPress={handleFilter(SHOW_COMPLETED)}>
+      <BtnFilter>Show Completed</BtnFilter>
+    </TouchableHighlight>
+    <TouchableHighlight onPress={handleFilter(SHOW_ACTIVE)}>
+      <BtnFilter>Show Active</BtnFilter>
+    </TouchableHighlight>
   </Container>
 )
 
